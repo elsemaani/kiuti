@@ -36,29 +36,56 @@ vector<string>& splitstring::split(char delim, int rep) {
     return flds;
 }
 
+int countWords(const char* line, const char *word){
+    int count = 0;
+    char *ptrLine= (char*)line;
+    // Read line chars and compare them with the target text
+    int wLength = (int) strlen(word);
+    // The function strstr looks for any matches of the ArgV1 and returns the
+    // text starting from matching string.
+    char *ptrText = strstr(ptrLine, word);
+    if (ptrText) {
+        int tLength = (int) strlen(ptrText);
+        for(int i = 0; i < tLength; i++){
+
+            // Evaluates if chars match with target text
+            bool match = true;
+            for(int j = 0; j < wLength; j++){
+                if (ptrText[i] != word[j]){
+                    match = false;
+                    break;
+                }
+                i++;
+            }
+            if (match){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
 int countTargets(const char *line, const char *target)
 {
     int count = 0;
     char *lin= (char*)line;
     int tsize = strlen(target);
-    //int size2 = strlen(*target);
     char *p = NULL;
     while (p = strstr(lin, target))
     {
         lin = p + tsize;
-        cout << p << std::endl;
         count++;
     }
     return count;
 }
 
-int main(int ArgC, char *ArgV[])
+int main(int argc, char *argv[])
 {
-    char *ArgV1 = ArgV[2];
+    char *argV1 = argv[2];
 
-    cout << "Word to search: "<< ArgV1 << endl;
+    cout << "Word to search: "<< argV1 << endl;
     vector<string> vec_lines;
-    // Count search 1
+    // Count search 1, is not 100% efficient.
     int count = 0;
         for (string line; std::getline(std::cin, line);) {
             vec_lines.push_back(line);
@@ -68,7 +95,7 @@ int main(int ArgC, char *ArgV[])
             splitstring str_line = q;
             vector<string> vec_line = str_line.split(' ');
             for (int k = 0; k < vec_line.size(); k++){
-                if(vec_line[k] == ArgV1)
+                if(vec_line[k] == argV1)
                     count++;
             }
         }
@@ -80,7 +107,7 @@ int main(int ArgC, char *ArgV[])
 
     for (int i = 0; i < vec_lines.size(); i++) {
         //cout << "(2) Line text: "<< vec_lines[i] << std::endl;
-        count += countTargets(vec_lines[i].c_str(), ArgV1);
+        count += countTargets(vec_lines[i].c_str(), argV1);
     }
     std::cout << "(2) Words count: " << count << std::endl;
 
