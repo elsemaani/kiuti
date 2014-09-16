@@ -1,0 +1,18 @@
+CREATE  TABLE IF NOT EXISTS `ClosedAccounts` (
+  `ClosedAccountId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Timestamp` datetime NOT NULL,
+  `PrimaryEmail` VARCHAR(128) NOT NULL ,
+  `SecondaryEmail` VARCHAR(128) NULL ,
+  `FirstName` VARCHAR(50) NOT NULL ,
+  `LastName` VARCHAR(50) NOT NULL ,
+  `Culture` VARCHAR(50) NOT NULL ,
+  `Address1` VARCHAR(128) NULL ,
+  `Address2` VARCHAR(128) NULL ,
+  `Country` VARCHAR(64) NOT NULL ,
+  `City` VARCHAR(64) NOT NULL ,
+  `State` VARCHAR(40) NOT NULL ,
+  `PostalCode` VARCHAR(40) NOT NULL ,
+  `Remarks` TEXT NOT NULL ,
+  PRIMARY KEY (`ClosedAccountId`)
+)
+COLLATE = utf8_general_ci;

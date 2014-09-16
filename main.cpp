@@ -6,7 +6,8 @@ int main(int ArgC, char *ArgV[])
 {
     int argC = ArgC;
     char *ArgV1 = ArgV[2];
-    cout << "Hello World!" << endl;
+    cout << ArgV1;
+    cout << " - Hello World!" << endl;
     return 0;
 }
 
