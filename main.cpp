@@ -132,14 +132,14 @@ int main(int argc, char *argv[])
 
     char *caseArg = "-c";
     bool isCase = true;
+    // Check if the word search will be done ignoring case sensitive or not.
     if (argV2 && *argV2 == *caseArg) {
         isCase = false;
     }
     for (int i = 0; i < vec_lines.size(); i++) {
         //cout << "(2) Line text: "<< vec_lines[i] << std::endl;
-        count += countWords(vec_lines[i].c_str(), argV1, isCase);
+        count += countTargets(vec_lines[i].c_str(), argV1, isCase);
     }
-
 
     std::cout << "(2) Words count: " << count << std::endl;
 
