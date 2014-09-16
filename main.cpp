@@ -65,13 +65,23 @@ int countWords(const char* line, const char *word){
     return count;
 }
 
-int countTargets(const char *line, const char *target)
+int countTargets(const char *line, const char *target, bool isCase = false)
 {
     int count = 0;
     char *lin= (char*)line;
-    int tsize = strlen(target);
+    char *tgt= (char*)target;
+
+    if(!isCase){
+        for(int i=0; lin[i]; i++){
+            lin[i] = toupper(lin[i]);
+        }
+        for(int i=0; tgt[i]; i++){
+            tgt[i] = toupper(tgt[i]);
+        }
+    }
+    int tsize = strlen(tgt);
     char *p = NULL;
-    while (p = strstr(lin, target))
+    while (p = strstr(lin, tgt))
     {
         lin = p + tsize;
         count++;
@@ -114,5 +124,6 @@ int main(int argc, char *argv[])
 
     return 0;
     // Counter -t "text" < ../kiuti/FindMe.txt
+    // Linux => ./TextCounter -t "NULL" < ../kiuti/FindMe.txt
 }
 
